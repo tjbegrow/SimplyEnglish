@@ -21,6 +21,7 @@ function App() {
   }
 
   const handleSearch = async (e) => {
+    //This needs Error Handling
     e.preventDefault();
     const result = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${search}`, {method: 'GET'});
     let data = await result.json();
