@@ -16,6 +16,7 @@ export default function ResultDisplay(props) {
     }
 
     const renderList = (list) =>{
+        //TODO: use a variable to check to see if Syonyms or Antonyms need to be displayed at all.
         if (list != undefined) {
             return list.map((items) => items.map(item => <li>{item}</li>))
         }
