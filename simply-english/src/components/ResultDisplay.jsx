@@ -5,8 +5,6 @@ export default function ResultDisplay(props) {
 
     const audioRender = () => {
        const phoneticsArr = props.defResults.phonetics;
-       //console.log(phoneticsArr[1]);
-       //if (!phoneticsArr || phoneticsArr.length === 0) return <div>No audio found.</div>;
        return phoneticsArr.map((phoneticObj,idx) => 
             phoneticObj.audio ? (
                 <audio controls key={idx}>
@@ -15,6 +13,13 @@ export default function ResultDisplay(props) {
                 </audio>
             ) : null
         );
+    }
+
+    const renderList = (list) =>{
+        if (list != undefined) {
+            return list.map((items) => items.map(item => <li>{item}</li>))
+        }
+         
     }
 
     //TODO: Synonyms & Antonymns renders
@@ -33,15 +38,13 @@ export default function ResultDisplay(props) {
                 <div className='other-words-items'>
                     <h3>Synonyms</h3>
                     <ul id="list">
-                        <li>word of Godjl;kj;lj;ljk;j;jk;jk;j</li>
-                        <li>Logos</li>
-                        <li>promise</li>
+                        {renderList(props.defResults.meanings.map((meaning) => meaning.synonyms))}
                     </ul>
                 </div>
                 <div className='other-words-items'>
                     <h3>Antonymns</h3>
                     <ul id="list">
-                        <li>word of Satan</li>
+                        {renderList(props.defResults.meanings.map((meaning) => meaning.antonyms))}
                     </ul>
                 </div>
             </div>       
