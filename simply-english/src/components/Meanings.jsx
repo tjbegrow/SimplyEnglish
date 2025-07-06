@@ -4,6 +4,7 @@ export default function Meanings() {
             <div>
                 <h4>Part of Speech</h4>
                 <h4>Definitions</h4>
+                
             </div>
             <div>
                 <h4>Part of Speech</h4>

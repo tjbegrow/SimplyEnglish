@@ -6,10 +6,32 @@ import Header from './components/Header'
 import ResultDisplay from './components/ResultDisplay'
 
 function App() {
-  const [count, setCount] = useState(0)
-  function search() {
-    return null
+  //Use this for the session search history
+  const [search, setSearch] = useState("");
+  //const [recentSearches, setRecentSearches] = useState([]);
+  const [resultData, setResultData] = useState();
+
+  class Definition {
+    constructor(word, phonetic, phonetics, meanings) {
+      this.word = word;
+      this.phonetic = phonetic;
+      this.phonetics = phonetics;
+      this.meanings = meanings;
+    }
   }
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    const result = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${search}`, {method: 'GET'});
+    let data = await result.json();
+    console.log(data[0].meanings);
+    const def= new Definition(data[0].word, data[0].phonetic, data[0].phonetics, data[0].meanings);
+    setResultData(def);
+  }
+
+  const renderResultsDisplay = (defResults) => <ResultDisplay defResults={defResults}/>
+
+
   return (
     <>
       <Header />
@@ -18,12 +40,18 @@ function App() {
           <h1>Simply English</h1>
           <p>A distraction free dictionary</p>
         </div>
-        <form className="search" action={search}>
-          <input name="query"></input>
-          <button type="submit">Search</button>
+        <form className="search" onSubmit={handleSearch}>
+          <input 
+            name="query"
+            onChange={e => setSearch(e.target.value)}
+            type="text"
+          />
+          <button 
+            type="submit"
+          >Search</button>
         </form>
       </div>
-      <ResultDisplay/>
+      {renderResultsDisplay(resultData)}
     </>
   )
 }
