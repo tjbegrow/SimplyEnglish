@@ -20,7 +20,11 @@ export default function ResultDisplay(props) {
         if (list != undefined) {
             return list.map((items) => items.map(item => <li>{item}</li>))
         }
-         
+    }
+
+    const renderMeanings = () => {
+        const meanings = props.defResults.meanings;
+        return meanings.map(meaning => <Meanings meaning={meaning}/>)
     }
 
     //TODO: Synonyms & Antonymns renders
@@ -34,7 +38,6 @@ export default function ResultDisplay(props) {
                 <h2>{props.defResults.word.charAt(0).toUpperCase() + props.defResults.word.slice(1)} · {props.defResults.phonetic}</h2> 
                 {audioRender()}
             </div>
-            <hr/>
             <div id='other-words'>
                 <div className='other-words-items'>
                     <h3>Synonyms</h3>
@@ -49,9 +52,10 @@ export default function ResultDisplay(props) {
                     </ul>
                 </div>
             </div>       
-            <h3>Meanings</h3>
-            <div>
-                <Meanings />
+            
+            <div id="meanings-container">
+                <h3>Meanings</h3>
+                {renderMeanings()}
             </div>
         </>    
         

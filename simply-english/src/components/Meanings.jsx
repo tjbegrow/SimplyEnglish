@@ -1,15 +1,23 @@
-export default function Meanings() {
-    return(
-        <div>
-            <div>
-                <h4>Part of Speech</h4>
-                <h4>Definitions</h4>
+export default function Meanings({meaning}) {
+    console.log(meaning);
+
+    const renderDef =  () => {
+        return meaning.definitions.map(definitions => 
+            (
                 
+                <div className="meanings-item"><li>{definitions.definition}</li></div>
+            )
+        )
+    }
+    return (
+        <>
+            <div id="meaning-container">
+                <h4>{meaning.partOfSpeech}</h4>
+                <hr width="300px"/>
+                <ol>
+                    {renderDef()}
+                </ol>
             </div>
-            <div>
-                <h4>Part of Speech</h4>
-                <h4>Definition</h4>
-            </div>
-        </div>
+        </>
     )
 }

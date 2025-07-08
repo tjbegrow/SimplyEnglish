@@ -52,7 +52,11 @@ function App() {
           >Search</button>
         </form>
       </div>
+      <hr/>
       {renderResultsDisplay(resultData)}
+      <footer>
+        <h2>Copywrite 2025</h2>
+      </footer>
     </>
   )
 }

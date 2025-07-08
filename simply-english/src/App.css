@@ -9,7 +9,7 @@
 
 body{
   font-family: "Molengo", sans-serif;
-  background-color: #DFD4CC;
+  background-color: #eef3f9;
 }
 
 nav > ul {
@@ -23,7 +23,7 @@ nav > ul {
 }
 
 nav {
-  background-color: #73666A;
+  background-color: #001b2e;
   height: 75px;
   max-height: 300px;
 }
@@ -36,11 +36,13 @@ nav {
 
 .top-container {
   margin-top: 20px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
   align-items: center;
   text-align: center;
+
 }
 
 .search {
@@ -89,4 +91,31 @@ nav {
   justify-content: left;
   width: 100px;
   max-width: 200px;
+}
+
+#meaning-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  max-height: 600px;
+  background-color: #1d3f58;
+  padding: 30px;
+  border-radius: 10px;
+  align-items: center;
+  color: white
+}
+#meanings-container {
+  display:flex;
+  flex-direction: row;
+  gap: 50px;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+#meaning-container > hr {
+  color: #d7b76e;
+}
+#meaning-container > h4 {
+  text-align: center;
 }
