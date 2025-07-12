@@ -8,6 +8,7 @@ import ResultDisplay from './components/ResultDisplay'
 function App() {
   //Use this for the session search history
   const [search, setSearch] = useState("");
+  const [searchHistory, setSearchHistory] = useState([]);
   //const [recentSearches, setRecentSearches] = useState([]);
   const [resultData, setResultData] = useState();
 
@@ -20,14 +21,31 @@ function App() {
     }
   }
 
-  const handleSearch = async (e) => {
+  const handleSearch = async (event) => {
     //This needs Error Handling
-    e.preventDefault();
-    const result = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${search}`, {method: 'GET'});
-    let data = await result.json();
-    console.log(data[0].meanings);
-    const def= new Definition(data[0].word, data[0].phonetic, data[0].phonetics, data[0].meanings);
-    setResultData(def);
+    try {
+      event.preventDefault();
+      const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${search}`, {method: 'GET'});
+      if (!response.ok) { // Handles HTTP response errors
+        //console.log(response);
+        throw new Error(response.status);
+      }
+
+      let data = await response.json();
+      //console.log(data[0].meanings);
+      setSearchHistory([...searchHistory, data[0].word]);
+      //console.log(`search history: ${searchHistory}`);
+      
+      const def= new Definition(data[0].word, data[0].phonetic, data[0].phonetics, data[0].meanings);
+      setResultData(def);
+    } catch (error) {
+      if (error == "Error: 404") {
+        alert(`${search} not found. Please try again.`) //Maybe this could just be a tool tip?
+      }
+      
+      
+    }
+    
   }
 
   const renderResultsDisplay = (defResults) => <ResultDisplay defResults={defResults}/>
@@ -35,7 +53,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header HistoryItems={searchHistory}/>
       <div className="top-container">
         <div className="Title">
           <h1>Simply English</h1>

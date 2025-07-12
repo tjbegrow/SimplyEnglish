@@ -20,7 +20,7 @@ export default function ResultDisplay(props) {
 
     //TODO: Synonyms & Antonymns renders
 
-    console.log(props.defResults);
+    //console.log(props.defResults);
     if (props.defResults != undefined)
         //Pick a different phonetic if not on the top level... Ends up being blank sometimes.
     return( 

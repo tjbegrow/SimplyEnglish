@@ -1,5 +1,5 @@
 export default function Meanings({meaning}) {
-    console.log(meaning);
+    //console.log(meaning);
 
     const renderDef =  () => {
         return meaning.definitions.map(definitions => 
