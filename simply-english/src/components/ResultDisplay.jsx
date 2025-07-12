@@ -1,19 +1,10 @@
 import Meanings from "./Meanings"
+import AudioPlayer from "./AudioPlayer"
 
 export default function ResultDisplay(props) {
     
 
-    const audioRender = () => {
-       const phoneticsArr = props.defResults.phonetics;
-       return phoneticsArr.map((phoneticObj,idx) => 
-            phoneticObj.audio ? (
-                <audio controls key={idx}>
-                    <source src={phoneticObj.audio} type="audio/mpeg" />
-                    Your browser does not support the audio element.
-                </audio>
-            ) : null
-        );
-    }
+    
 
     const renderList = (list) =>{
         //TODO: use a variable to check to see if Syonyms or Antonyms need to be displayed at all.
@@ -35,9 +26,10 @@ export default function ResultDisplay(props) {
     return( 
         <>
             <div id="main-result">
-                <h2>{props.defResults.word.charAt(0).toUpperCase() + props.defResults.word.slice(1)} · {props.defResults.phonetic}</h2> 
-                {audioRender()}
+                <h2>{props.defResults.word.charAt(0).toUpperCase() + props.defResults.word.slice(1)}  {props.defResults.phonetic && '· ' + props.defResults.phonetic}</h2> 
+                
             </div>
+            <AudioPlayer AudioInfo={props.defResults.phonetics}/>
             <div id='other-words'>
                 <div className='other-words-items'>
                     <h3>Synonyms</h3>
@@ -52,9 +44,11 @@ export default function ResultDisplay(props) {
                     </ul>
                 </div>
             </div>       
-            
-            <div id="meanings-container">
+            <div id="meanings-title">
                 <h3>Meanings</h3>
+            </div>
+            <div id="meanings-container">
+                
                 {renderMeanings()}
             </div>
         </>    
