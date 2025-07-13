@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -24,7 +24,14 @@ function App() {
   const handleSearch = async (event) => {
     //This needs Error Handling
     try {
+      //console.log(search);
+      //console.log(event);
       event.preventDefault();
+      // if (event.target.lastChild.innerHTML != "Search") {
+      //   console.log("Doesn't equal search: : + event.target.lastChild.innerHTML");
+      //   setSearch(event.target.lastChild.innerHTML);
+      // }
+      
       const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${search}`, {method: 'GET'});
       if (!response.ok) { // Handles HTTP response errors
         //console.log(response);
@@ -42,13 +49,14 @@ function App() {
       if (error == "Error: 404") {
         alert(`${search} not found. Please try again.`) //Maybe this could just be a tool tip?
       }
-      
-      
     }
-    
   }
 
-  const renderResultsDisplay = (defResults) => <ResultDisplay defResults={defResults}/>
+  const handleSearchChange = (newSearch) => {
+        setSearch(newSearch); 
+  };
+
+  const renderResultsDisplay = (defResults) => <ResultDisplay defResults={defResults} handleSearch={handleSearch} handleSearchChange={handleSearchChange}/>;
 
 
   return (
@@ -59,19 +67,22 @@ function App() {
           <h1>Simply English</h1>
           <p>A distraction free dictionary</p>
         </div>
-        <form className="search" onSubmit={handleSearch}>
-          <input 
-            name="query"
-            onChange={e => setSearch(e.target.value)}
-            type="text"
-          />
-          <button 
-            type="submit"
-          >Search</button>
-        </form>
+        <form id="search" onSubmit={handleSearch}>
+          <div id="searchArea">
+            <input 
+              id="searchBox"
+              name="query"
+              onChange={e => setSearch(e.target.value)}
+              type="text"
+            />
+            <button 
+              type="submit"
+            >Search</button>
+          </div>
+          <hr/>
+          {renderResultsDisplay(resultData)}
+       </form>
       </div>
-      <hr/>
-      {renderResultsDisplay(resultData)}
       <footer>
         <h2>Copywrite 2025</h2>
       </footer>

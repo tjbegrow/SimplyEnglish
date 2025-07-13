@@ -4,12 +4,16 @@ import AudioPlayer from "./AudioPlayer"
 export default function ResultDisplay(props) {
     
 
-    
+    const searchOtherWord = (e) => {
+        console.log(e.target.lastChild.textContent);
+        document.getElementById("searchBox").value = e.target.lastChild.textContent;
+        props.handleSearchChange(e.target.lastChild.textContent);
+    } 
 
     const renderList = (list) =>{
         //TODO: use a variable to check to see if Syonyms or Antonyms need to be displayed at all.
         if (list != undefined) {
-            return list.map((items) => items.map(item => <li>{item}</li>))
+            return list.map((items) => items.map(item => <li><button className="submitOtherWordBtn" type='submit' onClick={searchOtherWord}>{item}</button></li>))
         }
     }
 

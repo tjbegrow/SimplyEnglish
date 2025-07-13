@@ -45,19 +45,24 @@ nav {
 
 }
 
-.search {
+#searchArea {
   display: flex;
+  
+  justify-content: center;
+  align-items: center;
   gap: 20px;
+  margin-bottom: 20px;
 }
 
-.search > input {
+#searchArea > input {
   border-radius: 10px;
-  padding: 5px
+  padding: 5px;
+  
 }
 
-.search > button {
+#searchArea > button {
   background-color: #d7b76e;
-  padding: 5px;
+  padding: 7px;
   border-radius: 10px;
 }
 
@@ -71,33 +76,45 @@ nav {
 }
 
 #other-words {
-  margin-top: 20px;
+  margin: 20px;
+  /* max-width: 600px; */
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 50px;
+  
 }
 
 #list {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-/* #list > li {
-  
-} */
+#list > li {
+   list-style-type: none;
+   /* background-color: white; */
+   text-align: center;
+   
+}
 
 .other-words-items {
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  width: 100px;
+  /* display: flex; */
+  /* flex-direction: column; */
+  max-width: 600px;
+  min-width: 300px;
+  text-align: center;
+  /* width: 100px; */
   max-width: 200px;
+  background-color: #b3cde4;
+  padding: 30px;
+  border-radius: 20px;
 }
 
 #meaning-container {
   display: flex;
   flex-direction: column;
   max-width: 300px;
-  max-height: 600px;
+  /* max-height: 600px; */
   background-color: #1d3f58;
   padding: 30px;
   border-radius: 10px;
@@ -118,6 +135,7 @@ nav {
 }
 #meaning-container > h4 {
   text-align: center;
+  margin-bottom: 20px;
 }
 
 #meanings-title {
@@ -141,4 +159,13 @@ nav {
   background-color: white;
   width: 100%;
   max-width: 200px;
+}
+
+.submitOtherWordBtn {
+  flex-grow: 1;
+  padding: 10px;
+  border-radius: 20px;
+  margin: 5px;
+  min-width: 50px;
+  background-color: white;
 }
