@@ -3,20 +3,37 @@ import AudioPlayer from "./AudioPlayer"
 
 export default function ResultDisplay(props) {
     
+    let letIfSynonyms = false;
+    let letIfAntonyms = false;
+    console.log(props);
+    
+    if (props.defResults != undefined) {
+        for (const meaning of props.defResults.meanings) {
+                if (meaning.synonyms.length !== 0) {
+                    letIfSynonyms = true;   
+                    console.log('found breaking')
+                } 
+                if (meaning.antonyms.length !== 0) {
+                    letIfAntonyms = true;   
+                    console.log('found breaking')
+                }
+                if (letIfAntonyms && letIfAntonyms) {
+                    break;
+                }
+            }
+    }
+    
 
     const searchOtherWord = (e) => {
-        console.log(e.target.lastChild.textContent);
+        //console.log(e.target.lastChild.textContent);
         document.getElementById("searchBox").value = e.target.lastChild.textContent;
         props.handleSearchChange(e.target.lastChild.textContent);
     } 
 
     const renderList = (list) =>{
-        //TODO: use a variable to check to see if Syonyms or Antonyms need to be displayed at all.
-        if (list != undefined) {
-            return list.map((items) => items.map(item => <li><button className="submitOtherWordBtn" type='submit' onClick={searchOtherWord}>{item}</button></li>))
-        }
+        return list.map((items) => items.map(item => <li><button className="submitOtherWordBtn" type='submit' onClick={searchOtherWord}>{item}</button></li>))
     }
-
+    
     const renderMeanings = () => {
         const meanings = props.defResults.meanings;
         return meanings.map(meaning => <Meanings meaning={meaning}/>)
@@ -35,18 +52,18 @@ export default function ResultDisplay(props) {
             </div>
             <AudioPlayer AudioInfo={props.defResults.phonetics}/>
             <div id='other-words'>
-                <div className='other-words-items'>
+                {letIfSynonyms && <div className='other-words-items'>
                     <h3>Synonyms</h3>
                     <ul id="list">
                         {renderList(props.defResults.meanings.map((meaning) => meaning.synonyms))}
                     </ul>
-                </div>
-                <div className='other-words-items'>
+                </div>}
+                {letIfAntonyms && <div className='other-words-items'>
                     <h3>Antonymns</h3>
                     <ul id="list">
                         {renderList(props.defResults.meanings.map((meaning) => meaning.antonyms))}
                     </ul>
-                </div>
+                </div>}
             </div>       
             <div id="meanings-title">
                 <h3>Meanings</h3>
