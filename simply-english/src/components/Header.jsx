@@ -1,6 +1,10 @@
 import {useState} from 'react'
+
 export default function Header(props) {
 
+    //toggle
+
+    const [toggled, setToggled] = useState(false);
     const [historyDDOpen, setHitoryDDOpen] = useState(false);
     const toggleHistoryDD = () => setHitoryDDOpen(!historyDDOpen);
     console.log(props.HistoryItems);
@@ -24,6 +28,12 @@ export default function Header(props) {
                     </div>
                     <li className="nav-link"><a href="/contact">Anki Export</a></li>
                 </ul>
+                <button
+                   className={`toggle-btn ${toggled ? 'toggled': ""}`}
+                   onClick={() => setToggled(!toggled)} 
+                >
+                <div className="thumb"></div>
+                </button>
             </nav>
         </header>
     )
