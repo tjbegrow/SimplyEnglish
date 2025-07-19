@@ -1,5 +1,5 @@
-import Meanings from "./Meanings"
-import AudioPlayer from "./AudioPlayer"
+import Meanings from "../Meanings/Meanings"
+import AudioPlayer from "../AudioPlayer/AudioPlayer"
 
 export default function ResultDisplay(props) {
     

@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import Header from './components/Header'
-import ResultDisplay from './components/ResultDisplay'
+import Header from './components/Header/Header'
+import ResultDisplay from './components/ResultDisplay/ResultDisplay'
 
 function App() {
   //Use this for the session search history
@@ -11,6 +11,7 @@ function App() {
   const [searchHistory, setSearchHistory] = useState([]);
   //const [recentSearches, setRecentSearches] = useState([]);
   const [resultData, setResultData] = useState();
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   class Definition {
     constructor(word, phonetic, phonetics, meanings) {
@@ -61,8 +62,8 @@ function App() {
 
   return (
     <>
-      <Header HistoryItems={searchHistory}/>
-      <div className="top-container">
+      <Header HistoryItems={searchHistory} DarkMode={isDarkMode}/>
+      <div className={`top-container ${isDarkMode ? 'darkMode': ""}`}>
         <div className="Title">
           <h1>Simply English</h1>
           <p>A distraction free dictionary</p>

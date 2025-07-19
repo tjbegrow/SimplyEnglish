@@ -1,5 +1,5 @@
 import {useState} from 'react'
-
+import './header.css'
 export default function Header(props) {
 
     //toggle
@@ -28,13 +28,13 @@ export default function Header(props) {
                     </div>
                     <li className="nav-link"><a href="/contact">Anki Export</a></li>
                 </ul>
-                <button
+                {/* <button
                    className={`toggle-btn ${toggled ? 'toggled': ""}`}
                    onClick={() => setToggled(!toggled)} 
                 >
                 <div className="thumb"></div>
-                </button>
+                </button> */}
             </nav>
-        </header>
+        </header>o
     )
 }

@@ -1,0 +1,52 @@
+nav > ul {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+  height:100%;
+  margin-left: 20px;
+}
+nav {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right: 20px;
+}
+#history > button {
+  background: none;
+  border: none;
+  padding: 5px;
+  font-size: 1rem;
+  color: white;
+  font-family: "Molengo", sans-serif;
+}
+
+#history > button:hover { 
+  cursor: pointer;
+}
+.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background-color: white;
+  width: auto;
+  max-width: 200px;
+  padding: 5px;
+  list-style-type: none;
+  gap: 5px;
+  
+}
+
+.dropdown-menu li {
+  padding: 5px;
+  background-color: #b3cde4;
+}
+
+
+nav {
+  background-color: #001b2e;
+  height: 75px;
+  max-height: 300px;
+}
