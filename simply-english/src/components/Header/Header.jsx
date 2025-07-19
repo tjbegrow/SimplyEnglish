@@ -35,6 +35,6 @@ export default function Header(props) {
                 <div className="thumb"></div>
                 </button> */}
             </nav>
-        </header>o
+        </header>
     )
 }

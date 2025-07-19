@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Header from './components/Header/Header'
-import ResultDisplay from './components/ResultDisplay/ResultDisplay'
+import ResultDisplay from './components/ResultDisplay/'
 
 function App() {
   //Use this for the session search history
